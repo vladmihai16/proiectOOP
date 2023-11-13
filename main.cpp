@@ -35,8 +35,8 @@ private:
     static const int MIN_PRICE = 1;
 
 public:
-    void setEventType(EventType eventType) {
-        // Implementation needed
+     void setEventType(EventType eventType) {
+        this->type = eventType;
     }
 
     void setCity(const std::string& newCity) {
@@ -101,7 +101,50 @@ public:
         this->price = newPrice;
     }
 
-    //Getters 
+    //Getters
+    std::string getName() const {
+        return name;
+    }
+
+    std::string getCity() const {
+        return city;
+    }
+
+    std::string getVenue() const {
+        return venue;
+    }
+
+    std::string getDate() const {
+        return date;
+    }
+
+    std::string getTime() const {
+        return time;
+    }
+
+    const char* getSeatType() const {
+        return seatType;
+    }
+
+    const char* getTakenSeatsNormal() const {
+        return takenSeatsNormal;
+    }
+
+    const char* getTakenSeatsVIP() const {
+        return takenSeatsVIP;
+    }
+
+    int getNoOfRows() const {
+        return noOfRows;
+    }
+
+    int getNoOfColumns() const {
+        return noOfColumns;
+    }
+
+    int getPrice() const {
+        return price;
+    }
 };
 
 int main() {
