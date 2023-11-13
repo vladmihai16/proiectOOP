@@ -145,6 +145,54 @@ public:
     int getPrice() const {
         return price;
     }
+
+    // Default constructor
+    Event() {
+        //initialize attributes with default values
+        this->name = "Default Event";
+        this->city = "Default City";
+        this->name = "Default Event";
+        this->city = "Default City";
+        this->venue = "Default Venue";
+        this->date = "1/01/1970";
+        this->time = "00:00";
+        this->seatType = nullptr;
+        this->lengthOfSeatType = 0;
+        this->noOfRows = 0;
+        this->noOfColumns = 0;
+        this->price = 0;
+        this->takenSeatsNormal = nullptr;
+        this->takenSeatsVIP = nullptr;
+    }
+
+     Event(const Event& other) {
+        //copy attributes from another instance
+        this->name = other.name;
+        this->city = other.city;
+        this->venue = other.venue;
+        this->date = other.date;
+        this->time = other.time;
+
+        if (other.seatType != nullptr) {
+            int len = std::strlen(other.seatType) + 1;
+            this->seatType = new char[len];
+            std::strcpy(this->seatType, other.seatType);
+        } else {
+            this->seatType = nullptr;
+        }
+
+        this->lengthOfSeatType = other.lengthOfSeatType;
+        this->noOfRows = other.noOfRows;
+        this->noOfColumns = other.noOfColumns;
+        this->price = other.price;
+
+        //allocating new memory for each array and copying the content
+        this->takenSeatsNormal = new char[noOfRows * noOfColumns];
+        std::copy(other.takenSeatsNormal, other.takenSeatsNormal + noOfRows * noOfColumns, this->takenSeatsNormal);
+
+        this->takenSeatsVIP = new char[noOfRows * noOfColumns];
+        std::copy(other.takenSeatsVIP, other.takenSeatsVIP + noOfRows * noOfColumns, this->takenSeatsVIP);
+    }
 };
 
 int main() {
