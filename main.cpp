@@ -5,11 +5,11 @@
 #include <chrono>
 #include <ctime>
 
-enum class EventType { Movie, Sports, Concert };
-enum class TicketType { Child, Student, Adult, Elder };
-enum class Discounts { Adult = 0, Child = 50, Student = 40, Elder = 30 };
+enum class EventType{Movie, Sports, Concert};
+enum class TicketType{Child, Student, Adult, Elder};
+enum class Discounts{Adult = 0, Child = 50, Student = 40, Elder = 30};
 
-class Event {
+class Event{
 private:
     std::string name = "placeholder";
     std::string city = "placeholder";
@@ -195,7 +195,56 @@ public:
     }
 };
 
-int main() {
+class Buyer{
+    private:
+    std::string name;
+    int age;
+    TicketType ticketType;
+
+public:
+    Buyer(const std::string& newName, int newAge, TicketType newTicketType)
+        : name(newName), age(newAge), ticketType(newTicketType){} //member initializer list, it initializes the member variables of the Buyer class with the values passed as parameters to the constructor.
+
+    //Getters
+    std::string getName() const{
+        return name;
+    }
+
+    int getAge() const {
+        return age;
+    }
+
+    TicketType getTicketType() const{
+        return ticketType;
+    }
+};
+
+class BoughtTickets{
+private:
+    int eventID;
+    Buyer* buyer;
+    int seatNumber;
+
+public:
+    BoughtTickets(int newEventID, const Buyer& newBuyer, int newSeatNumber)
+        : eventID(newEventID), buyer(new Buyer(newBuyer)), seatNumber(newSeatNumber) {}
+
+    //Getters
+    int getEventID() const{
+        return eventID;
+    }
+
+    const Buyer* getBuyer() const{
+        return buyer;
+    }
+
+    int getSeatNumber() const{
+        return seatNumber;
+    }
+};
+
+
+int main(){
     Event myEvent;
     myEvent.setCity("New York");
     myEvent.setNoOfRows(5);
@@ -203,7 +252,13 @@ int main() {
     myEvent.setTakenSeatsNormal(3, 5);
     myEvent.setTakenSeatsVIP(2, 8);
 
-    //... restul codului
+    Buyer john("John Davids", 25, TicketType::Adult);
+    BoughtTickets johnsTicket(1, john, 15);
+
+    std::cout << "Event ID: " << johnsTicket.getEventID() << std::endl;
+    std::cout << "Buyer: " << johnsTicket.getBuyer()->getName() << std::endl;
+    std::cout << "Seat Number: " << johnsTicket.getSeatNumber() << std::endl;
+    //restul codului?
 
     return 0;
 }
