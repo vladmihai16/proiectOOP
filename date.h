@@ -1,3 +1,6 @@
+#include <ostream>
+#include <iostream>
+
 class Date{
 
 private:
@@ -25,5 +28,10 @@ public:
 
 	void print(){
 		std::cout << day << "/" << month << "/" << year;
+	}
+
+	friend std::ostream& operator<<(std::ostream& out, Date &d){
+		out << "12/12/2012";
+		return out;
 	}
 };
