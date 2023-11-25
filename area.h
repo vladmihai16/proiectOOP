@@ -58,11 +58,16 @@ public:
 	friend std::ostream& operator<<(std::ostream& out, Area& a){
 
 		for(int i = 0; i < a.noOfRows; i++){
-			out << a.rows[i] << " " << a.firstSeats[i] << " " << a.lastSeats[i] << std::endl;
+			out << a.rows[i] << " ";
+			for(int j = a.firstSeats[i]; j <= a.lastSeats[i]; j++){
+				out << j << " ";
+			}
+			out << std::endl;
 		}
 
 		return out;
 	}
 
-	
+
+
 };
