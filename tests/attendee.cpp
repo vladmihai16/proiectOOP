@@ -14,7 +14,8 @@ int main(){
 	std::cout << at2 << std::endl;
 	std::cout << at2.getAge() << std::endl;
 
-
+	if(at2 < 18) std::cout << at2.getFullName() << " is a child" << std::endl;
+	if(at2 >= 65) std::cout << at2.getFullName() << " is a senior/retiree" << std::endl;
 
 	return 0;
 }

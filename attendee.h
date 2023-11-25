@@ -36,7 +36,9 @@ public:
 		return (Date::currentDate - dateOfBirth).getYear();
 	}
 
-	//
+	std::string getFullName(){
+		return firstName + "-" + middleName + " " + lastName; 
+	}
 
 	//setters
 	Attendee& setFirstName(std::string firstName){
@@ -100,6 +102,13 @@ public:
 		return in;
 	}
 	
-	
+	//overloading <
+	friend bool operator<(Attendee& at, int age){
+		return at.getAge() < age;
+	}
 
+	//overloading >=
+	friend bool operator>=(Attendee& at, int age){
+		return at.getAge() >= age;
+	}
 };
