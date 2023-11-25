@@ -10,11 +10,13 @@ private:
 	unsigned short month = 0;
 	unsigned int year = 0;
 
-	static short lastDayOfMonth[13];
+	static const short lastDayOfMonth[13];
 	static std::string nameOfMonth[13];
 
 public:
 
+	static Date currentDate;
+	
 	//getters
 	unsigned short getDay(){
 		return day;
@@ -66,6 +68,13 @@ public:
 		if(day < 1) throw std::out_of_range("Day should be greater or equal to 1");
 		checkIfMonthHasDay(day);
 		this->day = day;
+		return *this;
+	}
+
+	Date& setDate(unsigned short day, unsigned short month, unsigned int year){
+		setYear(year);
+		setMonth(month);
+		setDay(day);
 		return *this;
 	}
 
@@ -157,7 +166,7 @@ public:
 
 };
 
-short Date::lastDayOfMonth[13] = {31, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+const short Date::lastDayOfMonth[13] = {31, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 std::string Date::nameOfMonth[13] = {
 	"",
 	"January",
@@ -173,3 +182,5 @@ std::string Date::nameOfMonth[13] = {
 	"November",
 	"December"
 };
+
+Date Date::currentDate(25, 11, 2023);
