@@ -32,6 +32,7 @@ public:
 		return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
 	}
 
+	//generic method
 	short isLeapMonth(){
 		return month == 2 && isLeapYear();
 	}
@@ -102,6 +103,48 @@ public:
 		in >> year; d.setYear(year);
 
 		return in;
+	}
+
+	// overloading -
+	friend Date& operator-(Date& d1, Date& d2){
+		Date* d = new Date();
+
+
+		d->year = d1.year - d2.year;
+		d->month = d1.month - d2.month;
+
+		if(d->month < 0){
+			d->year--;
+			d->month += 12;
+		}
+
+		d->day = d1.day - d2.day;
+		if(d->day < 0){
+			d->month--;
+			d->day += d->getLastDayOfMonth();
+		}
+		return *d;
+	}
+
+	// overloading +
+	friend Date& operator+(Date& d1, Date& d2){
+		Date* d = new Date();
+
+		d->year = d1.year + d2.year;
+		d->month = d1.month + d2.month;
+
+		if(d->month > 12){
+			d->year++;
+			d->month -= 12;
+		}
+
+		d->day = d1.day + d2.day;
+		if(d->day > d->getLastDayOfMonth()){
+			d->month++;
+			d->day -= d->getLastDayOfMonth();
+			d->day++;
+		}
+		return *d;
 	}
 
 };

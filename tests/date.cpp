@@ -2,14 +2,19 @@
 #include "../date.h"
 
 int main(){
-	Date date1;
-	Date date2(2000, 2, 29);
+	Date currentDate;
+	Date birthDate(2004, 3, 23);
+	Date futureDate(1, 1, 6);
 
-	std::cout << date1 << std::endl;
-	std::cout << date2 << std::endl;
-	std::cout << date2.getYear() << std::endl;
-	std::cout << "enter the date: "; std::cin >> date1;
-	std::cout << date1 << std::endl;
+	std::cout << currentDate << std::endl;
+	std::cout << birthDate << std::endl;
+	std::cout << birthDate.getYear() << std::endl;
+	std::cout << "enter current date: "; std::cin >> currentDate;
+	std::cout << currentDate << std::endl;
+
+	std::cout << (currentDate - birthDate).getYear() << std::endl;
+
+	std::cout << (currentDate + futureDate) << std::endl;
 
 	return 0;
 }
