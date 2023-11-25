@@ -1,7 +1,10 @@
 #include "..\attendee.h"
 
 int main(){
-	Attendee* at1 = new Attendee("Vasile", "Ion", "Popescu", new Date(15, 7, 1980));
-	at1->print();
+	Attendee at1("Vasile", "Ion", "Popescu");
+	at1.dateOfBirth
+	// cout << "date of birth: "; cin >> at1.dateOfBirth;
+	at1.print();
+	cout << at1.firstName << at1.middleName << at1.
 	return 0;
 }

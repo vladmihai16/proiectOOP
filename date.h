@@ -41,22 +41,30 @@ public:
 		return lastDayOfMonth[month] + isLeapMonth();
 	}
 
+	void checkIfMonthHasDay(unsigned short day){
+		if(day > getLastDayOfMonth()){
+			throw std::out_of_range(Date::nameOfMonth[month] + " does not have " + std::to_string(day) + " days in " + std::to_string(year));
+		}
+	}
+
 	// setters
 	Date& setYear(unsigned int year){
 		if(year >= 3000) throw std::out_of_range("The year cannot be greater than 3000"); 
 		this->year = year;
+		checkIfMonthHasDay(day);
 		return *this;
 	}
 
 	Date& setMonth(unsigned short month){
 		if(month < 1 || month > 12) throw std::out_of_range("Choose a month between 1 and 12");
 		this->month = month;
+		checkIfMonthHasDay(day);
 		return *this;
 	}
 
 	Date& setDay(unsigned short day){
 		if(day < 1) throw std::out_of_range("Day should be greater or equal to 1");
-		if(day > getLastDayOfMonth()) throw std::out_of_range(Date::nameOfMonth[month] + " does not have " + std::to_string(day) + " days");
+		checkIfMonthHasDay(day);
 		this->day = day;
 		return *this;
 	}
