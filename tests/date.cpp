@@ -2,8 +2,10 @@
 #include "../date.h"
 
 int main(){
-	Date* da = new Date(13, 14, 2000);
+	Date date1;
+	Date date2(2000, 2, 29);
 
-	std::cout << "data: " << *da << std::endl;
+	std::cout << date2 << date1 << std::endl;
+	std::cout << date2.getYear();
 	return 0;
 }
