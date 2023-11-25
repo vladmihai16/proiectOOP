@@ -3,8 +3,8 @@
 
 int main(){
 	Date currentDate;
-	Date birthDate(2004, 3, 23);
-	Date futureDate(1, 1, 6);
+	Date birthDate(23, 3, 2004);
+	Date futureDate(6, 1, 1);
 
 	std::cout << currentDate << std::endl;
 	std::cout << birthDate << std::endl;

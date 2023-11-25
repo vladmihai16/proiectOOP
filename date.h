@@ -69,12 +69,12 @@ public:
 		setYear(year);
 	}
 
-	Date(unsigned int year, unsigned short month){
+	Date(unsigned short month, unsigned int year){
 		setYear(year);
 		setMonth(month);
 	}
 
-	Date(unsigned int year, unsigned short month, unsigned short day){
+	Date(unsigned short day, unsigned short month, unsigned int year){
 		setYear(year);
 		setMonth(month);
 		setDay(day);
