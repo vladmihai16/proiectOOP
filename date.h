@@ -1,4 +1,5 @@
 #include <ostream>
+#include <istream>
 #include <iostream>
 #include <string>
 
@@ -78,13 +79,34 @@ public:
 		setDay(day);
 	}
 
-	friend std::ostream& operator<<(std::ostream& out, Date& date){
+	// overloading <<
+	friend std::ostream& operator<<(std::ostream& out, Date& d){
+		if(d.day) out << std::to_string(d.day);
+		if(d.day && d.month) out << " ";
+		if(d.month) out << Date::nameOfMonth[d.month];
+		if(d.month && d.year) out << " ";
+		if(d.year) out << std::to_string(d.year);
+
+		if(!d.day && !d.month && !d.year) out << "unknown date";
+
 		return out;
+	}
+
+	//overloading >>
+	friend std::istream& operator>>(std::istream& in, Date& d){
+		unsigned int year;
+		unsigned short month, day;
+
+		in >> day;	d.setDay(day);
+		in >> month; d.setMonth(month);
+		in >> year; d.setYear(year);
+
+		return in;
 	}
 
 };
 
-short Date::lastDayOfMonth[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+short Date::lastDayOfMonth[13] = {31, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 std::string Date::nameOfMonth[13] = {
 	"",
 	"January",
