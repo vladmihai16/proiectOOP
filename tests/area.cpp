@@ -1,18 +1,19 @@
 #include "../area.h"
+using namespace std;
 
 int main(){
+	ifstream fin("areas.txt");
 	Area a1, a2;
 
-	a1.getName();
-	a1.setName("VIP");
+	while(fin >> a1){
+		cout << a1;
+	}
+	fin.close();
 
-	a1.addRow('A', 1, 20).addRow('B', 5, 17);
-	a2 = a1;
-	std::cout << a1 << a2;
-
-	std::cout << "there are " << Area::getNoOfAreas() << " areas in total" << std::endl;
-
-	// a1['B'];
+	cout << "area: "; cin >> a2;
+	ofstream fout("areas.txt", ofstream::app);
+	fout << a2;
+	fout.close();
 
 	return 0;
 }
