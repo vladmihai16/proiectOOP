@@ -1,0 +1,6 @@
+O2 Arena
+Bd. Dorobanti 1, Bucuresti
+3
+3 7 U 10 LOJA
+5 6 H 15 VIP
+1 7 A 1 STANDARD
