@@ -105,13 +105,14 @@ public:
 	}
 
 	// default constructor
-	Area(){
-		
-	}
+	Area(){}
 
 	// copy constructor
-	Area(Area& a){
-		
+	Area(Area& other){
+		this->name = other.name;
+		this->noOfRows = other.noOfRows;
+		this->noOfColumns = other.noOfColumns;	
+		this->firstRow = other.firstRow;
+		this->firstColumn = other.firstColumn;
 	}
-
 };
