@@ -1,16 +1,23 @@
 #include "../occupancyTable.h"
-#include "../area.h"
 using namespace std;
 
 int main(){
+	Area area;
 	OccupancyTable table;
+
+	ifstream fin1("areas.txt");
+	while(fin1 >> area){
+		OccupancyTable t1(area);
+		ofstream fout1("occupancy\\" + t1.getName() + ".txt");
+		fout1 << t1;
+		fout1.close();
+	}
 
 	ifstream fin("occupancy.txt");
 	// table.setSize(3, 7);
 	// table.setFirstRow('U');
 	// table.setFirstColumn(20);
 	fin >> table;
-
 
 	cout << table;
 

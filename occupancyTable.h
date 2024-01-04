@@ -3,6 +3,7 @@
 #include <ostream>
 #include <istream>
 #include <string>
+#include "area.h"
 
 class OccupancyTable{
 
@@ -19,7 +20,7 @@ public:
 
 	// getters
 	std::string getName(){
-		return name + " area";
+		return name;
 	}
 
 	int getNoOfRows(){
@@ -91,6 +92,18 @@ public:
 		seats[i][j] = 0;
 	}
 
+	OccupancyTable(){
+		setSize(0, 0);
+	}
+
+	//copy constructor
+	OccupancyTable(Area& area){
+		setSize(area.getNoOfRows(), area.getNoOfColumns());
+		setFirstRow(area.getFirstRow());
+		setFirstColumn(area.getFirstColumn());
+		setName(area.getName());
+	}
+
 	// overloading <<
 	friend std::ostream& operator<<(std::ostream& out, OccupancyTable& table){
 
@@ -117,7 +130,8 @@ public:
 		fout << table.noOfRows << " ";
 		fout << table.noOfColumns << " ";
 		fout << table.firstRow << " ";
-		fout << table.firstColumn << std::endl;
+		fout << table.firstColumn << " ";
+		fout << table.name << std::endl;
 
 		for(int i = 0; i < table.noOfRows; i++){
 			for(int j = 0; j < table.noOfColumns; j++){
@@ -131,6 +145,7 @@ public:
 	// overloading >> for files
 	friend std::ifstream& operator>>(std::ifstream& fin, OccupancyTable& table){
 		int noOfRows, noOfColumns;
+		char name[32];
 		fin >> noOfRows;
 		fin >> noOfColumns;
 
@@ -138,6 +153,8 @@ public:
 
 		fin >> table.firstRow;
 		fin >> table.firstColumn;
+		fin.getline(name, 32);
+		table.setName(name);
 
 		for(int i = 0; i < table.noOfRows; i++){
 			for(int j = 0; j < table.noOfColumns; j++){
