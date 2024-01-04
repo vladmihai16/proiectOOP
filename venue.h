@@ -3,7 +3,7 @@
 #include <ostream>
 #include <istream>
 #include <string>
-#include "area.h"
+// #include "area.h"
 
 class Venue{
 
@@ -29,7 +29,7 @@ public:
 		return noOfAreas;
 	}
 
-	Area getArea(int i){
+	Area& getArea(int i){
 		if(i < 0 || i >= noOfAreas) throw std::length_error("Area " + std::to_string(i) + " does not exist");	
 		return areas[i];
 	}
@@ -85,7 +85,7 @@ public:
 		delete[] areas;
 	}
 
-	// overloading >>
+	// overloading >> for file
 	friend std::ifstream& operator>>(std::ifstream& fin, Venue& v){
 		std::getline(fin, v.name);
 		std::getline(fin, v.address);

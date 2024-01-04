@@ -97,6 +97,13 @@ public:
 	}
 
 	//copy constructor
+	OccupancyTable(OccupancyTable& table){
+		setSize(table.getNoOfRows(), table.getNoOfColumns());
+		setFirstRow(table.getFirstRow());
+		setFirstColumn(table.getFirstColumn());
+		setName(table.getName());
+	}
+
 	OccupancyTable(Area& area){
 		setSize(area.getNoOfRows(), area.getNoOfColumns());
 		setFirstRow(area.getFirstRow());
@@ -145,7 +152,6 @@ public:
 	// overloading >> for files
 	friend std::ifstream& operator>>(std::ifstream& fin, OccupancyTable& table){
 		int noOfRows, noOfColumns;
-		char name[32];
 		fin >> noOfRows;
 		fin >> noOfColumns;
 
@@ -153,8 +159,7 @@ public:
 
 		fin >> table.firstRow;
 		fin >> table.firstColumn;
-		fin.getline(name, 32);
-		table.setName(name);
+		std::getline(fin, table.name);
 
 		for(int i = 0; i < table.noOfRows; i++){
 			for(int j = 0; j < table.noOfColumns; j++){
