@@ -3,7 +3,7 @@
 #include <ostream>
 #include <istream>
 #include <string>
-#include "date.h"
+// #include "date.h"
 
 class Attendee{
 
@@ -98,8 +98,18 @@ public:
 
 	// overloading >>
 	friend std::istream& operator>>(std::istream& in, Attendee& at){
-		in >> at.firstName >> at.middleName >> at.lastName >> at.dateOfBirth;
+		std::cout << "Attendee" << std::endl; 
+		std::cout << "first name: "; in >> at.firstName;
+		std::cout << "middle name: "; in >> at.middleName;
+		std::cout << "last name: "; in >> at.lastName;
+		std::cout << "date of birth: "; in >> at.dateOfBirth;
 		return in;
+	}
+
+	// overloading >> for files
+	friend std::ifstream& operator>>(std::ifstream& fin, Attendee& at){
+		fin >> at.firstName >> at.middleName >> at.lastName >> at.dateOfBirth;
+		return fin;
 	}
 	
 	//overloading <

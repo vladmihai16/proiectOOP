@@ -7,6 +7,8 @@
 #include "occupancyTable.h"
 #include "venue.h"
 #include "date.h"
+#include "attendee.h"
+#include "ticket.h"
 
 class Event{
 
@@ -15,8 +17,14 @@ private:
 	int id;
 	Date date;
 	Venue* venue;
-	unsigned short noOfAreas;
+	unsigned short noOfAreas = 0;
 	OccupancyTable* areas = nullptr;
+	unsigned short noOfTickets = 0;
+	Ticket* tickets = nullptr;
+
+	unsigned int min(unsigned int a, unsigned int b){
+		return (a < b) ? a : b;
+	}
 
 public:
 
@@ -46,6 +54,15 @@ public:
 		return areas[i];
 	}
 
+	unsigned short getNoOfTickets(){
+		return noOfTickets;
+	}
+
+	Ticket& getTicket(unsigned short i){
+		if(i >= noOfTickets) throw std::length_error("Ticket " + std::to_string(i) + " does not exist");
+		return tickets[i];
+	}
+
 	// setters
 	Event& setDate(Date& date){
 		this->date = date;
@@ -71,6 +88,19 @@ public:
 			OccupancyTable t(venue.getArea(i));
 			areas[i] = t;
 		}
+		return *this;
+	}
+
+	Event& setNoOfTickets(unsigned short newSize){
+		Ticket* temp = new Ticket[newSize];
+		int n = min(noOfTickets, newSize);
+		for(int i = 0; i < n; i++){
+			temp[i] = tickets[i];
+		}
+		if(tickets) delete[] tickets;
+		tickets = temp;
+		noOfTickets = newSize;
+
 		return *this;
 	}
 
@@ -116,6 +146,27 @@ public:
 		for(int i = 0; i < event.noOfAreas; i++){	
 			fout << event.areas[i];
 		}
+
+		fout << event.noOfTickets << std::endl;
+		for(int i = 0; i < event.noOfTickets; i++){
+			fout << event.tickets[i] << std::endl;
+		}
+
 		return fout;
+	}
+
+	Ticket* createTicket(unsigned short areaIndex, char row, int seatNumber){
+		OccupancyTable &area = getArea(areaIndex);
+		if(area.occupy(row, seatNumber)){
+			setNoOfTickets(noOfTickets+1);
+			Ticket t;
+			t.generateNewID();
+			t.setAreaName(area.getName());
+			t.setRow(row);
+			t.setSeat(seatNumber);
+			tickets[noOfTickets-1] = t;
+			return &tickets[noOfTickets-1];
+		}
+		return nullptr;
 	}
 };

@@ -2,14 +2,19 @@
 using namespace std;
 
 int main(){
-	Event e;
+	Event event;
 
 	ifstream fin("event.txt");
-	fin >> e;
+	fin >> event;
 	fin.close();
-	cout << e << endl;
+	cout << event << endl;
+	// event.getArea(0).occupy('W', 15);
+	Ticket &t = *event.createTicket(0, 'W', 15);
+	cin >> (t.getAttendee());
+	cout << t;
+	cout << event.getArea(0);
 	ofstream fout("event.txt");
-	fout << e;
+	fout << event;
 	fout.close();
 
 	return 0;

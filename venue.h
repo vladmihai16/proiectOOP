@@ -14,6 +14,10 @@ private:
 	int noOfAreas = 0;
 	Area* areas = nullptr;
 
+	unsigned int min(unsigned int a, unsigned int b){
+		return (a < b) ? a : b;
+	}
+
 public:
 
 	// getters
@@ -48,7 +52,7 @@ public:
 		Area* temp = new Area[newSize];
 		// Area temp[newSize];
 
-		int overlap = (newSize < noOfAreas ? newSize : noOfAreas);
+		int overlap = min(newSize, noOfAreas);
 
 		for(int i = 0; i < overlap; i++){
 			temp[i] = areas[i];
