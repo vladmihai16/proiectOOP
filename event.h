@@ -5,7 +5,7 @@
 #include <string>
 #include "area.h"
 #include "occupancyTable.h"
-#include "venue.h"
+// #include "venue.h"
 #include "date.h"
 #include "attendee.h"
 #include "ticket.h"
@@ -16,7 +16,7 @@ private:
 	std::string name;
 	int id;
 	Date date;
-	Venue* venue;
+	// Venue* venue;
 	unsigned short noOfAreas = 0;
 	OccupancyTable* areas = nullptr;
 	unsigned short noOfTickets = 0;
@@ -41,9 +41,9 @@ public:
 		return date;
 	}
 
-	Venue* getVenue(){
+	/*Venue* getVenue(){
 		return venue;
-	}
+	}*/
 
 	unsigned short getNoOfAreas(){
 		return noOfAreas;
@@ -81,7 +81,7 @@ public:
 		return *this;
 	}
 
-	Event& setVenue(Venue& venue){
+	/*Event& setVenue(Venue& venue){
 		this->venue = &venue;
 		setNoOfAreas(venue.getNoOfAreas());
 		for(int i = 0; i < noOfAreas; i++){
@@ -89,7 +89,7 @@ public:
 			areas[i] = t;
 		}
 		return *this;
-	}
+	}*/
 
 	Event& setNoOfTickets(unsigned short newSize){
 		Ticket* temp = new Ticket[newSize];
@@ -110,8 +110,8 @@ public:
 		fin >> event.date;
 		// std::cout << event.name << std::endl;
 		// std::cout << event.date << std::endl;
-		int venueId;
-		fin >> venueId;
+		// int venueId;
+		// fin >> venueId;
 		// std::cout << venueId << std::endl;
 
 		int n;
@@ -123,6 +123,13 @@ public:
 		for(int i = 0; i < event.noOfAreas; i++){
 			fin >> event.areas[i];
 			// std::cout << event.areas[i] << std::endl;
+		}
+
+		fin >> n;
+		event.setNoOfTickets(n);
+
+		for(int i = 0; i < event.noOfTickets; i++){
+			fin >> event.tickets[i];
 		}
 
 		return fin;
@@ -140,7 +147,7 @@ public:
 	friend std::ofstream& operator<<(std::ofstream& fout, Event& event){
 		fout << event.name << std::endl;
 		fout << event.date << std::endl;
-		fout << 1 << std::endl;
+		// fout << 1 << std::endl;
 
 		fout << event.noOfAreas << std::endl;
 		for(int i = 0; i < event.noOfAreas; i++){	

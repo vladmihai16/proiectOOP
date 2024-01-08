@@ -98,10 +98,19 @@ public:
 		fout << ticket.ID << " ";
 		fout << ticket.row << " " << ticket.seat << " ";
 		fout << ticket.areaName << std::endl;
+		fout << ticket.attendee << std::endl;
 
 		return fout;
 	}
 
+	// overloading >>
+	friend std::ifstream& operator>>(std::ifstream& fin, Ticket& ticket){
+		fin >> ticket.ID >> ticket.row >> ticket.seat;
+		fin.ignore(2, ' ');
+		std::getline(fin, ticket.areaName);
+		fin >> ticket.attendee;
 
+		return fin;
+	}
 
 };

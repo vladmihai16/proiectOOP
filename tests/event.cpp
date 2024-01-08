@@ -9,9 +9,11 @@ int main(){
 	fin.close();
 	cout << event << endl;
 	// event.getArea(0).occupy('W', 15);
-	Ticket &t = *event.createTicket(0, 'W', 15);
-	cin >> (t.getAttendee());
-	cout << t;
+	if(Ticket *t = event.createTicket(0, 'W', 14)){
+		cin >> (t->getAttendee());
+		cout << t;
+	}
+
 	cout << event.getArea(0);
 	ofstream fout("event.txt");
 	fout << event;

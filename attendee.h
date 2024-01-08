@@ -96,6 +96,16 @@ public:
 		return out;
 	}
 
+	// overloading << for files
+	friend std::ofstream& operator<<(std::ofstream& fout, Attendee& at){
+		fout << at.firstName << " ";
+		fout << at.middleName << " "; 
+		fout << at.lastName << " "; 
+		fout << at.dateOfBirth;
+
+		return fout;
+	}
+
 	// overloading >>
 	friend std::istream& operator>>(std::istream& in, Attendee& at){
 		std::cout << "Attendee" << std::endl; 

@@ -1,12 +1,11 @@
 1 Meci Fotbal
 1 1 2024
-1
 3
 LOJA area
 3 7 U 10
 0 1 0 0 0 0 0 
 0 0 0 0 0 0 0 
-0 0 0 0 0 1 0 
+1 1 1 1 1 1 1 
 VIP area
 5 6 H 15
 0 0 0 0 0 0 
@@ -17,6 +16,10 @@ VIP area
 STANDARD area
 1 7 A 1
 0 0 0 0 0 0 0 
-1
-3570794832 n 1547322173 
+2
+1234 W 13 LOJA area
+rares matei ionescu 4 5 2010
+
+1234 W 14 LOJA area
+ana maria iordan 4 6 1999
 
