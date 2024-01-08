@@ -2,15 +2,18 @@
 1 1 2024
 1
 3
-3 7 U 10 LOJA area
+LOJA area
+3 7 U 10
 0 0 0 0 0 0 0 
 0 0 0 0 0 0 0 
 0 0 0 0 0 0 0 
-5 6 H 15 VIP area
+VIP area
+5 6 H 15
 0 0 0 0 0 0 
 0 0 0 0 0 0 
 0 0 0 0 0 0 
 0 0 0 0 0 0 
 0 0 0 0 0 0 
-1 7 A 1 STANDARD area
-0 0 0 0 0 0 0
+STANDARD area
+1 7 A 1
+0 0 0 0 0 0 0 

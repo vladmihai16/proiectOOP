@@ -110,6 +110,11 @@ public:
 		return out;
 	}
 
+	friend std::ofstream& operator<<(std::ofstream& fout, Date& d){
+		fout << d.day << " " << d.month << " " << d.year;
+		return fout;
+	}
+
 	//overloading >>
 	friend std::istream& operator>>(std::istream& in, Date& d){
 		unsigned int year;

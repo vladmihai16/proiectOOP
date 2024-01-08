@@ -3,7 +3,7 @@
 #include <ostream>
 #include <istream>
 #include <string>
-#include "area.h"
+// #include "area.h"
 
 class OccupancyTable{
 
@@ -93,7 +93,7 @@ public:
 	}
 
 	OccupancyTable(){
-		setSize(0, 0);
+		//setSize(0, 0);
 	}
 
 	//copy constructor
@@ -134,12 +134,12 @@ public:
 
 	// overloading << for files
 	friend std::ofstream& operator<<(std::ofstream& fout, OccupancyTable& table){
+		fout << table.name << std::endl;
 		fout << table.noOfRows << " ";
 		fout << table.noOfColumns << " ";
 		fout << table.firstRow << " ";
-		fout << table.firstColumn << " ";
-		fout << table.name << std::endl;
-
+		fout << table.firstColumn << std::endl;
+		
 		for(int i = 0; i < table.noOfRows; i++){
 			for(int j = 0; j < table.noOfColumns; j++){
 				fout << table.seats[i][j] << " ";
@@ -151,6 +151,8 @@ public:
 
 	// overloading >> for files
 	friend std::ifstream& operator>>(std::ifstream& fin, OccupancyTable& table){
+		fin.ignore(2, '\n'); // jump to the next line
+		std::getline(fin, table.name);
 		int noOfRows, noOfColumns;
 		fin >> noOfRows;
 		fin >> noOfColumns;
@@ -159,7 +161,6 @@ public:
 
 		fin >> table.firstRow;
 		fin >> table.firstColumn;
-		std::getline(fin, table.name);
 
 		for(int i = 0; i < table.noOfRows; i++){
 			for(int j = 0; j < table.noOfColumns; j++){

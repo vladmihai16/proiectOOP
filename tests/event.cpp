@@ -8,6 +8,9 @@ int main(){
 	fin >> e;
 	fin.close();
 	cout << e << endl;
+	ofstream fout("event.txt");
+	fout << e;
+	fout.close();
 
 	return 0;
 }

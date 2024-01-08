@@ -78,21 +78,21 @@ public:
 	friend std::ifstream& operator>>(std::ifstream& fin, Event& event){
 		std::getline(fin, event.name);
 		fin >> event.date;
-		std::cout << event.name << std::endl;
-		std::cout << event.date << std::endl;
+		// std::cout << event.name << std::endl;
+		// std::cout << event.date << std::endl;
 		int venueId;
 		fin >> venueId;
-		std::cout << venueId << std::endl;
+		// std::cout << venueId << std::endl;
 
 		int n;
 		fin >> n; 
-		std::cout << n << std::endl;
+		// std::cout << n << std::endl;
 		event.setNoOfAreas(n);
-		std::cout << event.noOfAreas << std::endl;
+		// std::cout << event.noOfAreas << std::endl;
 
 		for(int i = 0; i < event.noOfAreas; i++){
 			fin >> event.areas[i];
-			std::cout << event.areas[i] << std::endl;
+			// std::cout << event.areas[i] << std::endl;
 		}
 
 		return fin;
@@ -102,11 +102,20 @@ public:
 	friend std::ostream& operator<<(std::ostream& out, Event& event){
 		out << event.name << std::endl;
 		out << event.date << std::endl;
-		out << event.noOfAreas << std::endl;
 
-		for(int i = 0; i < event.noOfAreas; i++){
-			out << event.areas[i];
-		}
 		return out;
+	}
+
+	// overload << for file
+	friend std::ofstream& operator<<(std::ofstream& fout, Event& event){
+		fout << event.name << std::endl;
+		fout << event.date << std::endl;
+		fout << 1 << std::endl;
+
+		fout << event.noOfAreas << std::endl;
+		for(int i = 0; i < event.noOfAreas; i++){	
+			fout << event.areas[i];
+		}
+		return fout;
 	}
 };
